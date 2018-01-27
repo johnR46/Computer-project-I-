@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>frame970.jpg</filename>
+	<path>/home/cpe/Desktop/images/frame970.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1349</xmin>
+			<ymin>468</ymin>
+			<xmax>1545</xmax>
+			<ymax>758</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -19,6 +19,8 @@ These functions often receive an image, perform some visualization on the image.
 The functions do not return a value, instead they modify the image itself.
 
 """
+import math
+import time
 import collections
 import functools
 import matplotlib.pyplot as plt
@@ -29,6 +31,8 @@ import PIL.ImageDraw as ImageDraw
 import PIL.ImageFont as ImageFont
 import six
 import tensorflow as tf
+import scipy.misc
+start_time = time.time()
 
 
 _TITLE_LEFT_MARGIN = 10
@@ -430,6 +434,7 @@ def visualize_boxes_and_labels_on_image_array(image,
   """
   # Create a display string (and color) for every box location, group any boxes
   # that correspond to the same location.
+  speed_object = 'speed :'  
   box_to_display_str_map = collections.defaultdict(list)
   box_to_color_map = collections.defaultdict(str)
   box_to_instance_masks_map = {}
@@ -452,17 +457,17 @@ def visualize_boxes_and_labels_on_image_array(image,
             class_name = category_index[classes[i]]['name']
           else:
             class_name = 'N/A'
+            
+          
           # find a center point.
           ymin, xmin, ymax, xmax = box
           ycenter = (ymin + ymax) / 2
           xcenter = (xmin + xmax) / 2
-          display_str = '{0:} ({1:.2f},{2:.2f})'.format(class_name, xcenter, ycenter)
-          plt.plot([ymin,ymax,ycenter],[xmin,xmax,xcenter])
-          plt.xlabel('Simulation cm ')
-          plt.ylabel('Real distance m')
-          
-          
-          # display_str = 'a:{0:.2f}, b:{1:.2f}, c:{2:.2f}, d:{3:.2f}, {4:}'.format(ymin, xmin, ymax, xmax, class_name)
+          display_str = '{0:}  ({1:.2f},{2:.2f}) {3:} {4:.3f}'.format(class_name, xcenter, ycenter,speed_object,speeds('x**0.5897-7.2579*x+574.68',range(1,23),xcenter,ycenter))
+          graph('x**0.5897-7.2579*x+574.68',range(1,23))
+          #plt.show()
+        
+        
         else:
           display_str = 'score: {}%'.format(int(100 * scores[i]))
         box_to_display_str_map[box].append(display_str)
@@ -471,7 +476,7 @@ def visualize_boxes_and_labels_on_image_array(image,
         else:
           box_to_color_map[box] = STANDARD_COLORS[
               classes[i] % len(STANDARD_COLORS)]
-    plt.show()
+  
    
 
 
@@ -504,6 +509,30 @@ def visualize_boxes_and_labels_on_image_array(image,
 
   return image
 
+def speeds(formula,x_range,xcenter,ycenter):
+   
+    x  =  xcenter*xcenter + ycenter*ycenter
+    c = np.int(math.sqrt(x))
+    
+    x = np.array(x_range)  
+    y = eval(formula)
+    v =  (y-c / (time.time() - start_time ))*0.1    
+    
+    return v[1]
+  
+    
+    
+   
+
+  
+def graph(formula,x_range):  
+    x = np.array(x_range)  
+    y = eval(formula)
+    plt.plot(x,y)
+    plt.xlabel('cout post')
+    plt.ylabel('distance of post')
+    #plt.show()
+
 
 def add_cdf_image_summary(values, name):
   """Adds a tf.summary.image for a CDF plot of the values.
@@ -514,6 +543,11 @@ def add_cdf_image_summary(values, name):
   Args:
     values: a 1-D float32 tensor containing the values.
     name: name for the image summary.
+
+
+
+
+    
   """
   def cdf_plot(values):
     """Numpy function to plot CDF."""

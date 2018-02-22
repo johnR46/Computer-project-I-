@@ -72,8 +72,8 @@ shutil.move('modification/zoo', 'object_detection/zoo')
 shutil.move('ssd_mobilenet_v1_coco_2017_11_17', 'object_detection/zoo/ssd_mobilenet_v1_coco_2017_11_17')
 shutil.move('modification/label_map_util.py', 'object_detection/utils/label_map_util.py')
 
-shutil.move('modification/od_picture.py', 'object_detection/od_picture.py')
-shutil.move('modification/od_video.py', 'object_detection/od_video.py')
+shutil.move('modification/convert_picture_detection.py', 'object_detection/od_picture.py')
+shutil.move('modification/detection_realtime_video.py', 'object_detection/od_video.py')
 shutil.move('modification/visualization_utils.py', 'object_detection/utils/visualization_utils.py')
 
 # delete directores and files.

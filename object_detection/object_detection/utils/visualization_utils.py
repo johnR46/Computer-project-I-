@@ -437,6 +437,7 @@ def visualize_boxes_and_labels_on_image_array(image,
   if not max_boxes_to_draw:
     max_boxes_to_draw = boxes.shape[0]
   for i in range(min(max_boxes_to_draw, boxes.shape[0])):
+  
     if scores is None or scores[i] > min_score_thresh:
       box = tuple(boxes[i].tolist())
       if instance_masks is not None:
@@ -456,6 +457,11 @@ def visualize_boxes_and_labels_on_image_array(image,
           ycenter = (ymin + ymax) / 2
           xcenter = (xmin + xmax) / 2
           display_str = '{0:} ({1:.2f},{2:.2f})'.format(class_name, xcenter, ycenter)
+          plt.plot([ymin,ymax,ycenter],[xmin,xmax,xcenter])
+          plt.xlabel('Simulation cm ')
+          plt.ylabel('Real distance m')
+          
+          
           # display_str = 'a:{0:.2f}, b:{1:.2f}, c:{2:.2f}, d:{3:.2f}, {4:}'.format(ymin, xmin, ymax, xmax, class_name)
         else:
           display_str = 'score: {}%'.format(int(100 * scores[i]))
@@ -465,6 +471,9 @@ def visualize_boxes_and_labels_on_image_array(image,
         else:
           box_to_color_map[box] = STANDARD_COLORS[
               classes[i] % len(STANDARD_COLORS)]
+    plt.show()
+   
+
 
   # Draw all boxes onto image.
   for box, color in box_to_color_map.items():

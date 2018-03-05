@@ -50,7 +50,7 @@ image_files = [img for img in os.listdir(inputed_image_path) if os.path.isfile(o
 
 # Detection.
 PATH_TO_TEST_IMAGES_DIR = 'inputed_pictures'
-TEST_IMAGE_PATHS = [ os.path.join(PATH_TO_TEST_IMAGES_DIR, '{}.jpg'.format(i)) for i in range(993, len(image_files)+1) ]
+TEST_IMAGE_PATHS = [ os.path.join(PATH_TO_TEST_IMAGES_DIR, '{}.jpg'.format(i)) for i in range(1, len(image_files)+1) ]
 IMAGE_SIZE = (12, 8)
 
 with detection_graph.as_default():

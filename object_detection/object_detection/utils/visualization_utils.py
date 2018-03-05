@@ -463,7 +463,8 @@ def visualize_boxes_and_labels_on_image_array(image,
           ymin, xmin, ymax, xmax = box
           ycenter = (ymin + ymax) / 2
           xcenter = (xmin + xmax) / 2
-          display_str = '{0:}  ({1:.2f},{2:.2f}) {3:} {4:.3f}'.format(class_name, xcenter, ycenter,speed_object,speeds('x**0.5897-7.2579*x+574.68',range(1,23),xcenter,ycenter))
+          display_str = '{0:}  ({1:.2f},{2:.2f}) {3:} {4:.3f}'.format(class_name, xcenter, ycenter,speed_object,
+          speeds('x**0.5897-7.2579*x+574.68',range(1,23),xcenter,ycenter))
           graph('x**0.5897-7.2579*x+574.68',range(1,23))
           #plt.show()
         
@@ -519,8 +520,6 @@ def speeds(formula,x_range,xcenter,ycenter):
     v =  (y-c / (time.time() - start_time ))*0.1    
     
     return v[1]
-  
-    
     
    
 
@@ -531,7 +530,7 @@ def graph(formula,x_range):
     plt.plot(x,y)
     plt.xlabel('cout post')
     plt.ylabel('distance of post')
-    #plt.show()
+   # plt.show()
 
 
 def add_cdf_image_summary(values, name):

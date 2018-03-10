@@ -464,9 +464,9 @@ def visualize_boxes_and_labels_on_image_array(image,
           ycenter = (ymin + ymax) / 2
           xcenter = (xmin + xmax) / 2
           display_str = '{0:}  ({1:.2f},{2:.2f}) {3:} {4:.3f}'.format(class_name, xcenter, ycenter,speed_object,
-          speeds('x**0.5897-7.2579*x+574.68',range(1,23),xcenter,ycenter))
-          graph('x**0.5897-7.2579*x+574.68',range(1,23))
-          #plt.show()
+          speeds())
+          graph('x**-0.0014 + 1.8517*x + 596.37',time.time() - start_time)
+          
         
         
         else:
@@ -509,17 +509,42 @@ def visualize_boxes_and_labels_on_image_array(image,
           use_normalized_coordinates=use_normalized_coordinates)
 
   return image
+                                                                      
+# convert ycenter to xpost
+def convert_y_to_x(a):
+    b = math.sqrt(-0.0056 * a + 6.768465)
+    ans_xpost = (1.8517 - b)/0.0028
+    print(ans_xpost)
+    return ans_xpost
 
-def speeds(formula,x_range,xcenter,ycenter):
-   
-    x  =  xcenter*xcenter + ycenter*ycenter
-    c = np.int(math.sqrt(x))
+                                                                      
+#convert ycenter(t)     
+def calculator_y_time(formula,x):
+    ans_ydiscount = eval(formula)
+    print(ans_ydiscount)
+    start_time = time.time()
+    return ans_ydiscount
+
+                                                                      
+
+                                                                      
+
+def speeds():
+       
+    times = time.time()
+  
+    discount_y_1 = calculator_y_time('x**-0.0014 + 1.8517*x + 596.37',times - start_time) #timestart
+    xpost_1 = convert_y_to_x(discount_y_1)
+
+
     
-    x = np.array(x_range)  
-    y = eval(formula)
-    v =  (y-c / (time.time() - start_time ))*0.1    
+    discount_y_2 = calculator_y_time('x**-0.0014 + 1.8517*x + 596.37',time.time() - start_time) #timenow
+    xpost_2 = convert_y_to_x(discount_y_2)
     
-    return v[1]
+    V = (xpost_2 - xpost_1) / (time.time() - times)  # xpost_2 - xpost_1  / time_2 - time_1 
+    
+    print(V)
+    return V
     
    
 

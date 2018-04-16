@@ -50,7 +50,7 @@ def speeds():
     discount_y_2 = calculator_y_time('x**-0.0014 + 1.8517*x + 596.37',time.time() - start_time) #timenow
     xpost_2 = convert_y_to_x(discount_y_2)
     
-    V = (xpost_2 - xpost_1) / (time.time() - times)  // xpost_2 - xpost_1  / time_2 - time_1 
+    V = (xpost_2 - xpost_1) / (time.time() - times)  # xpost_2 - xpost_1  / time_2 - time_1 
     
     print(V)
     return V

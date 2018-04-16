@@ -86,8 +86,8 @@ with detection_graph.as_default():
           line_thickness=8)
       plt.figure(figsize=IMAGE_SIZE)
       plt.imshow(image_np)
-      #plt.show() 
-      # saving image file
+      plt.show() 
+      #saving image file
       scipy.misc.imsave('outputed_pictures\\' + image_path.split('\\')[1], image_np)
 
 print('done!')

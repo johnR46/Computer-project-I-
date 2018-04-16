@@ -514,7 +514,7 @@ def visualize_boxes_and_labels_on_image_array(image,
 def convert_y_to_x(a):
     b = math.sqrt(-0.0056 * a + 6.768465)
     ans_xpost = (1.8517 - b)/0.0028
-    print(ans_xpost)
+    #print(ans_xpost)
     return ans_xpost
 
                                                                       
@@ -540,11 +540,15 @@ def speeds():
     
     discount_y_2 = calculator_y_time('x**-0.0014 + 1.8517*x + 596.37',time.time() - start_time) #timenow
     xpost_2 = convert_y_to_x(discount_y_2)
-    
-    V = (xpost_2 - xpost_1) / (time.time() - times)  # xpost_2 - xpost_1  / time_2 - time_1 
-    
-    print(V)
+    if(time.time() - times != 0):
+      V = (xpost_2 - xpost_1) / (time.time() - times)  # xpost_2 - xpost_1  / time_2 - time_1 
+
+    else :
+      V = 1
+
     return V
+    
+    
     
    
 

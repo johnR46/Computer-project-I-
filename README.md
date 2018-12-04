@@ -1,3 +1,5 @@
+
+#Computer project I ลงกับ อ.ปรเมศ ทำเรื่องการตรวจจับและระบุความเร็วรถ
 # object_tracking 
 ## Ref. 
 * https://pythonprogramming.net/introduction-use-tensorflow-object-detection-api-tutorial/
